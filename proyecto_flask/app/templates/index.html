@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Regex</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Proyecto: Lenguajes y Autómatas</h1>
+        <p>Escribe un texto en el área de abajo. El sistema resaltará los correos electrónicos, números de teléfono y URLs que encuentre.</p>
+
+        <textarea id="text-input" rows="10" placeholder="Pega tu texto aquí..."></textarea>
+        <button id="validate-btn">Validar Texto</button>
+
+        <h3>Resultados:</h3>
+        <div id="result-output" class="output-box">
+            </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
