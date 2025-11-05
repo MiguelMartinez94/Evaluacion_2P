@@ -1,26 +1,25 @@
-from flask import Blueprint, render_template, request, jsonify
-from app.validators import RegexValidator
+from app import app
+from flask import render_template, request, jsonify
+from . import validators 
 
-bp = Blueprint('main', __name__)
-
-@bp.route('/')
+@app.route('/')
 def index():
-    """Página principal"""
+    """
+    Renderiza la página principal.
+    """
     return render_template('index.html')
 
-@bp.route('/validate', methods=['POST'])
-def validate():
-    """Endpoint para validar un campo individual"""
-    data = request.json
-    field = data.get('field')
-    value = data.get('value')
-    
-    result = RegexValidator.validate_field(field, value)
-    return jsonify(result)
+@app.route('/validate', methods=['POST'])
+def validate_text():
+    """
+    Endpoint para recibir texto y devolverlo resaltado.
+    """
+    data = request.get_json()
+    text = data.get('text', '')
 
-@bp.route('/validate_all', methods=['POST'])
-def validate_all():
-    """Endpoint para validar todos los campos"""
-    data = request.json
-    result = RegexValidator.validate_all(data)
-    return jsonify(result)
+    
+    highlighted_text = validators.highlight_emails(text)
+
+    return jsonify({
+        'highlighted_text': highlighted_text
+    })
