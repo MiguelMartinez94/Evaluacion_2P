@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, escape
 from . import validators 
 
 @app.route('/')
@@ -17,9 +17,16 @@ def validate_text():
     data = request.get_json()
     text = data.get('text', '')
 
+    processed_text = escape(text)
+
+    processed_text = validators.highlight_emails(processed_text)
     
-    highlighted_text = validators.highlight_emails(text)
+    
+    processed_text = validators.highlight_phones(processed_text)
+    
+    
+    processed_text = validators.highlight_urls(processed_text)
 
     return jsonify({
-        'highlighted_text': highlighted_text
+        'highlighted_text': processed_text
     })

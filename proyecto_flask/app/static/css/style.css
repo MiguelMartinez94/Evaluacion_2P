@@ -193,3 +193,20 @@ button:hover {
     border-radius: 3px;
     padding: 2px 4px;
 }
+
+.highlight-phone {
+    background-color: #e8eaf6; /* Azul claro */
+    color: #3f51b5;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+.highlight-url {
+    background-color: #e0f2f1; /* Verde azulado claro */
+    color: #00796b;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 2px 4px;
+    text-decoration: underline;
+}
